@@ -76,7 +76,7 @@
         .equal {
             background: #00c853;
             color: #ffffff;
-            grid-column: span 2;
+            /* grid-column: span 2; */
         }
 
         .clear {
@@ -93,9 +93,9 @@
 
     <div class="buttons">
         <button class="clear" onclick="clearDisplay()">C</button>
-        <button class="operator" onclick="appendValue('/')">÷</button>
+        <button class="operator" onclick="appendValue('%')">%</button>
         <button class="operator" onclick="appendValue('+')">+</button>
-        <button class="operator" onclick="appendValue('+')">+</button>
+        
 
         <button class="number" onclick="appendValue('7')">7</button>
         <button class="number" onclick="appendValue('8')">8</button>
@@ -110,6 +110,8 @@
         <button class="number" onclick="appendValue('1')">1</button>
         <button class="number" onclick="appendValue('2')">2</button>
         <button class="number" onclick="appendValue('3')">3</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+        
         
         <button class="number" onclick="appendValue('.')">.</button>
          <button class="number" onclick="appendValue('0')">0</button>
