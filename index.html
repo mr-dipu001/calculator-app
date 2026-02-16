@@ -93,7 +93,7 @@
 
     <div class="buttons">
         <button class="clear" onclick="clearDisplay()">C</button>
-        <button class="operator" onclick="appendValue('%')">%</button>
+        <button class="operator" onclick="backspace()">⌫</button>
         <button class="operator" onclick="appendValue('+')">+</button>
         
 
@@ -138,6 +138,11 @@
             display.value = "Error";
         }
     }
+
+    function backspace() {
+    let display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
 
 </script>
 
