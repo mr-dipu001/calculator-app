@@ -82,7 +82,7 @@
         .clear {
             background: #d32f2f;
             color: #ffffff;
-            grid-column: span 2;
+            /* grid-column: span 2; */
         }
     </style>
 </head>
@@ -94,6 +94,7 @@
     <div class="buttons">
         <button class="clear" onclick="clearDisplay()">C</button>
         <button class="operator" onclick="backspace()">⌫</button>
+        <button class="operator" onclick="percentage()">%</button>
         <button class="operator" onclick="appendValue('+')">+</button>
         
 
@@ -121,28 +122,36 @@
 </div>
 
 <script>
-    const display = document.getElementById("display");
+   const display = document.getElementById("display");
 
-    function appendValue(value) {
-        display.value += value;
+function appendValue(value) {
+    display.value += value;
+}
+
+function clearDisplay() {
+    display.value = "";
+}
+
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch {
+        display.value = "Error";
     }
+}
 
-    function clearDisplay() {
-        display.value = "";
+function percentage() {
+    try {
+        display.value = eval(display.value) / 100;
+    } catch {
+        display.value = "Error";
     }
+}
 
-    function calculate() {
-        try {
-            display.value = eval(display.value);
-        } catch (e) {
-            display.value = "Error";
-        }
-    }
-
-    function backspace() {
-    let display = document.getElementById("display");
+function backspace() {
     display.value = display.value.slice(0, -1);
 }
+
 
 </script>
 
