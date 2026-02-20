@@ -253,46 +253,61 @@ background:#cc00ff;
 
 <script>
 
-
 const display = document.getElementById("display");
 
-
-
 function appendValue(value){
-
 display.value += value;
-
 }
-
 
 function clearDisplay(){
-
 display.value = "";
-
 }
-
 
 function backspace(){
-
 display.value = display.value.slice(0,-1);
-
 }
 
 
-
-/* percentage */
+/* REAL Percentage Logic */
 
 function calculate(){
 
 try{
 
-let expression = display.value;
+let exp = display.value;
 
-/* convert % into /100 */
 
-expression = expression.replace(/(\d+)%/g,"($1/100)");
+/* + percentage */
+exp = exp.replace(/(\d+\.?\d*)\+(\d+\.?\d*)%/g,
+(a,b,c)=> Number(b) + (Number(b)*Number(c)/100)
+);
 
-display.value = eval(expression);
+
+/* - percentage */
+exp = exp.replace(/(\d+\.?\d*)-(\d+\.?\d*)%/g,
+(a,b,c)=> Number(b) - (Number(b)*Number(c)/100)
+);
+
+
+/* × percentage */
+exp = exp.replace(/(\d+\.?\d*)\*(\d+\.?\d*)%/g,
+(a,b,c)=> Number(b) * Number(c)/100
+);
+
+
+/* ÷ percentage */
+exp = exp.replace(/(\d+\.?\d*)\/(\d+\.?\d*)%/g,
+(a,b,c)=> Number(b) / (Number(c)/100)
+);
+
+
+/* single percentage */
+exp = exp.replace(/(\d+\.?\d*)%/g,
+(a,b)=> Number(b)/100
+);
+
+
+display.value = eval(exp);
 
 }
 
@@ -301,10 +316,7 @@ catch{
 display.value="Error";
 
 }
-
 }
-
-
 
 </script>
 
