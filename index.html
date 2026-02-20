@@ -1,159 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Professional Calculator</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<title>Digital Colorful Calculator</title>
 
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            font-family: "Segoe UI", Arial, sans-serif;
-        }
+<style>
 
-        .calculator {
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 16px;
-            width: 280px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
+*{
+box-sizing:border-box;
+}
 
-        .display {
-            width: 100%;
-            height: 60px;
-            background: #000;
-            color: #00e5ff;
-            font-size: 26px;
-            text-align: right;
-            padding: 10px;
-            border-radius: 8px;
-            border: none;
-            margin-bottom: 15px;
-        }
+body{
 
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 
-        button {
-            height: 55px;
-            font-size: 18px;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
-        }
+background: linear-gradient(135deg,#ff512f,#dd2476);
 
-        button:active {
-            transform: scale(0.96);
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
-        }
+font-family:Segoe UI;
 
-        .number {
-            background: #2d2d2d;
-            color: #ffffff;
-        }
+}
 
-        .operator {
-            background: #2979ff;
-            color: #ffffff;
-        }
 
-        .equal {
-            background: #00c853;
-            color: #ffffff;
-            /* grid-column: span 2; */
-        }
+.calculator{
 
-        .clear {
-            background: #d32f2f;
-            color: #ffffff;
-            /* grid-column: span 2; */
-        }
-    </style>
+background:#111;
+
+padding:20px;
+
+border-radius:20px;
+
+width:300px;
+
+box-shadow:
+0 0 20px #000,
+0 0 40px #ff00ff;
+
+}
+
+
+.display{
+
+width:100%;
+
+height:70px;
+
+background:#000;
+
+color:#00ffe7;
+
+font-size:30px;
+
+text-align:right;
+
+padding:10px;
+
+border:none;
+
+border-radius:10px;
+
+margin-bottom:15px;
+
+box-shadow:0 0 15px #00ffe7;
+
+}
+
+
+.buttons{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:10px;
+
+}
+
+
+button{
+
+height:60px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:0.2s;
+
+}
+
+
+/* number */
+
+.number{
+
+background:linear-gradient(45deg,#434343,#000);
+
+color:white;
+
+}
+
+
+.number:hover{
+
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+
+}
+
+
+/* operator */
+
+.operator{
+
+background:linear-gradient(45deg,#ff512f,#f09819);
+
+color:white;
+
+}
+
+
+.operator:hover{
+
+background:linear-gradient(45deg,#00ff87,#60efff);
+
+color:black;
+
+}
+
+
+/* equal */
+
+.equal{
+
+background:linear-gradient(45deg,#00c853,#b2ff59);
+
+color:black;
+
+}
+
+
+.equal:hover{
+
+background:linear-gradient(45deg,#00ffcc,#00cc99);
+
+}
+
+
+/* clear */
+
+.clear{
+
+background:linear-gradient(45deg,#ff0000,#990000);
+
+color:white;
+
+}
+
+
+.clear:hover{
+
+background:red;
+
+}
+
+
+/* backspace */
+
+.back{
+
+background:linear-gradient(45deg,#ff00cc,#3333ff);
+
+color:white;
+
+}
+
+.back:hover{
+
+background:#cc00ff;
+
+}
+
+
+</style>
+
 </head>
+
 <body>
 
+
 <div class="calculator">
-    <input type="text" class="display" id="display" disabled>
 
-    <div class="buttons">
-        <button class="clear" onclick="clearDisplay()">C</button>
-        <button class="operator" onclick="backspace()">⌫</button> 
-        <button class="operator" onclick="percentage()">%</button>
-        <button class="operator" onclick="appendValue('+')">+</button>
-        
+<input type="text" id="display" class="display" disabled>
 
-        <button class="number" onclick="appendValue('7')">7</button>
-        <button class="number" onclick="appendValue('8')">8</button>
-        <button class="number" onclick="appendValue('9')">9</button>
-        <button class="operator" onclick="appendValue('-')">−</button>
+<div class="buttons">
 
-        <button class="number" onclick="appendValue('4')">4</button>
-        <button class="number" onclick="appendValue('5')">5</button>
-        <button class="number" onclick="appendValue('6')">6</button>
-        <button class="operator" onclick="appendValue('*')">×</button>
-        
-        <button class="number" onclick="appendValue('1')">1</button>
-        <button class="number" onclick="appendValue('2')">2</button>
-        <button class="number" onclick="appendValue('3')">3</button>
-        <button class="operator" onclick="appendValue('/')">÷</button>
-        
-        
-        <button class="number" onclick="appendValue('.')">.</button>
-         <button class="number" onclick="appendValue('0')">0</button>
-          <button class="number" onclick="appendValue('00')">00</button>
-        <button class="equal" onclick="calculate()">=</button>
-    </div>
+<button class="clear" onclick="clearDisplay()">C</button>
+
+<button class="back" onclick="backspace()">⌫</button>
+
+<button class="operator" onclick="appendValue('%')">%</button>
+
+<button class="operator" onclick="appendValue('/')">÷</button>
+
+
+<button class="number" onclick="appendValue('7')">7</button>
+
+<button class="number" onclick="appendValue('8')">8</button>
+
+<button class="number" onclick="appendValue('9')">9</button>
+
+<button class="operator" onclick="appendValue('*')">×</button>
+
+
+<button class="number" onclick="appendValue('4')">4</button>
+
+<button class="number" onclick="appendValue('5')">5</button>
+
+<button class="number" onclick="appendValue('6')">6</button>
+
+<button class="operator" onclick="appendValue('-')">−</button>
+
+
+<button class="number" onclick="appendValue('1')">1</button>
+
+<button class="number" onclick="appendValue('2')">2</button>
+
+<button class="number" onclick="appendValue('3')">3</button>
+
+<button class="operator" onclick="appendValue('+')">+</button>
+
+
+<button class="number" onclick="appendValue('0')">0</button>
+
+<button class="number" onclick="appendValue('00')">00</button>
+
+<button class="number" onclick="appendValue('.')">.</button>
+
+<button class="equal" onclick="calculate()">=</button>
+
+
 </div>
 
+</div>
+
+
 <script>
-   const display = document.getElementById("display");
 
-function appendValue(value) {
-    display.value += value;
+
+const display = document.getElementById("display");
+
+
+
+function appendValue(value){
+
+display.value += value;
+
 }
 
-function clearDisplay() {
-    display.value = "";
+
+function clearDisplay(){
+
+display.value = "";
+
 }
 
-function calculate() {
-    try {
-        display.value = eval(display.value);
-    } catch {
-        display.value = "Error";
-    }
+
+function backspace(){
+
+display.value = display.value.slice(0,-1);
+
 }
 
-function percentage() {
-    try {
-        display.value = eval(display.value) / 100;
-    } catch {
-        display.value = "Error";
-    }
+
+
+/* percentage */
+
+function calculate(){
+
+try{
+
+let expression = display.value;
+
+/* convert % into /100 */
+
+expression = expression.replace(/(\d+)%/g,"($1/100)");
+
+display.value = eval(expression);
+
 }
 
-function backspace() {
-    display.value = display.value.slice(0, -1);
+catch{
+
+display.value="Error";
+
 }
+
+}
+
 
 
 </script>
+
 
 </body>
 </html>
